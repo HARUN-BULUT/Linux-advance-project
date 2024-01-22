@@ -1,0 +1,8 @@
+aws ec2 describe-instances \
+    --instance-ids i-09bb201757bf8e078
+
+
+grep PrivateIpAddress info.json | head -1 |cut -d '"' -f4
+sed "s/ec2-private_ip/$(grep PrivateIpAddress info.json | head -1 |cut -d '"' -f4)/" terraform.tf
+sed -i  "s/ec2-private_ip/$(grep PrivateIpAddress info.json | head -1 |cut -d '"' -f4)/" terraform.tf> terraform_buckap.tf
+not: sed -i flagi dosyayi yerinde bul ve degistir anlaminda kullanilir
